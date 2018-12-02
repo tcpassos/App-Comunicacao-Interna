@@ -1,0 +1,26 @@
+<div id="perfil-container" class="row align-items-center bg-dark">
+
+  <div class="col-12">
+
+    <div id="perfil-header" class="row justify-content-center">
+      <div class="col-5 text-white text-center p-2">
+        <h5 class="display-3">{{usuario.nome}}</h5>
+        <p class="font-italic font-weight-light">({{usuario.login}})</p>
+      </div>
+    </div>
+
+
+    <div id="perfil-body" class="row justify-content-center">
+      <div class="col-5 bg-white p-3">
+        <img id="perfil-imagem" class="mx-auto d-block" src="http://colegioclassea.com.br/wp-content/themes/PageLand/assets/img/avatar/avatar.jpg">
+        <p class="h6 text-center my-3"><b>Perfil:</b> {{perfil}}</p>
+        <p class="h6 text-center my-3">
+          <b>Data de Nascimento:</b> {{usuario.nascimento | date}}
+        </p>
+      </div>
+    </div>
+
+    <button routerLink="/chat" class="btn btn-outline-light mx-auto my-2 d-block">Voltar</button>
+
+  </div>
+</div>

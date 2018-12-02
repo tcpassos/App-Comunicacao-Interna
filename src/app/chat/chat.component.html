@@ -1,0 +1,63 @@
+<div id="chat-header" class="row bg-dark">
+    <div class="col-12 text-white">
+        <button class="btn btn-sm btn-outline-light d-inline m-3" (click)="logout()">Logout</button>
+        <button *ngIf="usuarioAtual.perfil == 'A'"
+        class="btn btn-sm btn-outline-light" routerLink="/cadastro">
+            Cadastrar usuário
+        </button>
+        <h4 class="d-inline m-3">
+            <a routerLink="/perfil/{{usuarioAtual.login}}">
+                {{usuarioAtual.nome}}
+            </a>
+            <small>({{usuarioAtual.login}})</small>
+
+            <a class="float-right m-3" routerLink="/perfil/{{usuarioConversa.login}}">
+                {{usuarioConversa.nome}}
+            </a>
+        </h4>
+    </div>
+</div>
+
+<div id="chat-container" class="row">
+
+    <!-- LISTA -->
+    <div id="chat-lista" class="col-4">
+        <app-chat-lista [usuarioAtual]="usuarioAtual" [chatService]="chatService"
+        (usuarioSelecionado)="onUsuarioSelecionado($event)"></app-chat-lista>
+    </div>
+    
+    <!-- CONVERSA -->
+    <div id="chat-conversa" class="col-8">
+    
+        <div #chatMensagens id="chat-conversa-mensagens">
+        
+            <ul class="list-group col-12" *ngFor="let mensagem of mensagens">
+                <li class="row col-7 list-group-item my-1" style="word-wrap: break-word;" 
+                [ngClass]="{'offset-5 bg-dark text-white' : usuarioAtual.id == mensagem.origem}">
+                    <p class="mx-3 my-0">{{mensagem.texto}}</p>
+                </li>
+            </ul>
+
+            <div class="row col-7 list-group-item my-1 invisible">ultimo</div>
+    
+        </div>
+    
+        <!-- Caixa de digitacao -->
+        <div *ngIf="mostrarInput" id="chat-conversa-input" class="row px-0 my-2 d-block">
+            <div class="input-group col-12">
+                
+                <input #msg type="text" class="form-control" placeholder="Envie uma mensagem"
+                (keyup.enter)="enviarMensagem(msg)">
+
+                <span class="input-group-btn">
+                    <button class="btn btn-dark" type="button"
+                    (click)="enviarMensagem(msg)">
+                        Enviar
+                    </button>
+                </span>
+
+            </div>
+        </div>
+
+    </div>    
+</div>

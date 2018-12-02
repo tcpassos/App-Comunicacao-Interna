@@ -1,0 +1,37 @@
+<div class="row">
+	<div class="col-12">
+		<h4 class="text-center">
+			{{titulo}}
+			<button *ngIf="!novaConversaStatus" [ngClass]="{'disabled': !usuariosCarregados}"
+            class="btn btn-outline-success btn-sm m-2"
+			(click)="novaConversa(true)">nova</button>
+			<button *ngIf="novaConversaStatus" class="btn btn-outline-danger btn-sm m-2"
+			(click)="novaConversa(false)">cancelar</button>
+		</h4>
+	</div>
+</div>
+
+<div class="row" style="height: 80vh; overflow-y: auto;">
+
+    <div class="col-12">
+
+        <div class="list-group list-group-flush" role="tablist"
+        *ngFor="let usuario of usuariosLista; index as i">
+            <a class="list-group-item list-group-item-action" name={{usuario.id}} data-toggle="list" role="tab"
+            [ngClass]="{'active text-white': indiceUsuario == i}"
+            (click)="onUsuarioSelecionado($event.target.name, i)">
+
+                <!-- achei essa imagem no google -->
+        		<img width="50" height="50" src="http://colegioclassea.com.br/wp-content/themes/PageLand/assets/img/avatar/avatar.jpg">
+                
+            	<p class="d-inline">
+            		{{usuario.nome}}
+            		<small class="font-weight-light font-italic">
+            			({{usuario.login}})
+            		</small>
+            	</p>
+            </a>
+        </div>
+
+    </div>
+</div>

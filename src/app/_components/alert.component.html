@@ -1,0 +1,5 @@
+<div class="row">
+    <div class="col-12">
+            <div *ngIf="mensagem" [ngClass]="{ 'alert': mensagem, 'alert-success': mensagem.tipo === 'sucesso', 'alert-danger': mensagem.tipo === 'erro' }">{{mensagem.texto}}</div>
+    </div>
+</div>
